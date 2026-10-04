@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Tooba Khan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <nav class="navbar scrolled" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">TK.</a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="skills.html" class="nav-link">Skills</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="projects.html" class="nav-link">Projects</a></li>
+                <li><a href="education.html" class="nav-link">Education</a></li>
+                <li><a href="resume.html" class="nav-link">Resume</a></li>
+                <li><a href="contact.html" class="nav-link active">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <div style="height: 80px;"></div>
+
+    <section id="contact" class="contact section-padding" style="min-height: calc(100vh - 300px);">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Get In <span>Touch</span></h2>
+                <p>Let's Work Together</p>
+            </div>
+            
+            <div class="contact-grid">
+                <div class="contact-info glass-card" data-aos="fade-right">
+                    <h3>Contact Information</h3>
+                    <p>Ready to start your next project? Reach out to me via email or WhatsApp.</p>
+                    
+                    <div class="info-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <div>
+                            <h4>Location</h4>
+                            <p>Karachi, Sindh, Pakistan</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="fa-solid fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <a href="mailto:tooba6850@gmail.com">tooba6850@gmail.com</a>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="fa-solid fa-phone"></i>
+                        <div>
+                            <h4>Phone & WhatsApp</h4>
+                            <a href="tel:+923172626778">03172626778</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-social">
+                        <a href="https://wa.me/923172626778" target="_blank" class="btn btn-secondary magnetic"><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a>
+                    </div>
+                </div>
+                
+                <form class="contact-form glass-card" id="contactForm" data-aos="fade-left">
+                    <div class="form-group">
+                        <input type="text" id="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="subject" placeholder="Subject" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary magnetic">Send Message <i class="fa-solid fa-paper-plane"></i></button>
+                    <div id="formMessage" class="form-message"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-col">
+                <h3>Tooba Khan</h3>
+                <p>Full Stack Web Developer crafting premium web experiences.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="projects.html">Projects</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Connect</h3>
+                <div class="footer-social">
+                    <a href="https://github.com/tooba6850-web" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+                    <a href="mailto:tooba6850@gmail.com"><i class="fa-solid fa-envelope"></i> Email</a>
+                    <a href="https://wa.me/923172626778" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Designed & Developed by Tooba Khan. All rights reserved.</p>
+            <a href="#" class="back-to-top magnetic"><i class="fa-solid fa-arrow-up"></i></a>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

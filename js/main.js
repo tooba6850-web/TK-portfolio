@@ -4,6 +4,17 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     
+    // --- 0. Ambient Background Blobs & Scroll Progress ---
+    const blob1 = document.createElement('div');
+    blob1.className = 'ambient-blob blob-1';
+    const blob2 = document.createElement('div');
+    blob2.className = 'ambient-blob blob-2';
+    
+    const scrollProgress = document.createElement('div');
+    scrollProgress.className = 'scroll-progress';
+    
+    document.body.prepend(blob1, blob2, scrollProgress);
+
     // --- 1. Loader ---
     const loader = document.getElementById('loader');
     setTimeout(() => {
@@ -52,8 +63,8 @@ document.addEventListener('DOMContentLoaded', () => {
         magneticElements.forEach((el) => {
             el.addEventListener('mousemove', (e) => {
                 const position = el.getBoundingClientRect();
-                const x = e.pageX - position.left - position.width / 2;
-                const y = e.pageY - position.top - position.height / 2;
+                const x = e.clientX - position.left - position.width / 2;
+                const y = e.clientY - position.top - position.height / 2;
                 
                 el.style.transform = `translate(${x * 0.3}px, ${y * 0.5}px)`;
             });
@@ -76,6 +87,12 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             navbar.classList.remove('scrolled');
         }
+        
+        // Scroll Progress update
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        scrollProgress.style.width = scrolled + "%";
     });
 
     hamburger.addEventListener('click', () => {
@@ -264,31 +281,48 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 10. Contact Form Submission Mock ---
+    // --- 10. Contact Form Submission (Web3Forms API) ---
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
+        contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const formMessage = document.getElementById('formMessage');
             
-            // Simulating API call
             const btn = contactForm.querySelector('button[type="submit"]');
             const originalText = btn.innerHTML;
             btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
             btn.disabled = true;
 
-            setTimeout(() => {
-                formMessage.textContent = 'Thank you! Your message has been sent successfully. I will get back to you soon.';
-                formMessage.className = 'form-message success';
-                contactForm.reset();
+            const formData = new FormData(contactForm);
+
+            try {
+                const response = await fetch("https://api.web3forms.com/submit", {
+                    method: "POST",
+                    body: formData
+                });
                 
+                const data = await response.json();
+                
+                if (data.success) {
+                    formMessage.textContent = 'Thank you! Your message has been sent successfully. I will get back to you soon.';
+                    formMessage.className = 'form-message success';
+                    contactForm.reset();
+                } else {
+                    formMessage.textContent = 'Something went wrong. Make sure you added your Access Key in contact.html.';
+                    formMessage.className = 'form-message error';
+                }
+            } catch (error) {
+                formMessage.textContent = 'Failed to send message. Please try again later.';
+                formMessage.className = 'form-message error';
+            } finally {
                 btn.innerHTML = originalText;
                 btn.disabled = false;
                 
                 setTimeout(() => {
-                    formMessage.style.display = 'none';
+                    formMessage.className = 'form-message'; // resets back to display: none
+                    formMessage.style.display = ''; // clears any inline styles
                 }, 5000);
-            }, 1500);
+            }
         });
     }
 

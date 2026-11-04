@@ -2,29 +2,30 @@
    CSS Variables & Tokens
    ========================================================================== */
    :root {
-    /* Color Palette */
-    --bg-primary: #050505;
-    --bg-secondary: #111111;
-    --accent-primary: #00D9FF;
-    --accent-secondary: #6A5CFF;
-    --text-primary: #FFFFFF;
-    --text-secondary: #A0A0A0;
+    /* Modern Professional Color Palette */
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #121212;
+    --accent-primary: #6366f1; /* Sophisticated Indigo */
+    --accent-secondary: #a855f7; /* Vibrant Purple */
+    --accent-tertiary: #ec4899; /* Deep Pink */
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
     
-    /* Gradients */
+    /* Sleek Gradients */
     --gradient-accent: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-    --gradient-glow: linear-gradient(90deg, #00D9FF, #6A5CFF, #00D9FF);
+    --gradient-glow: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary), var(--accent-tertiary), var(--accent-primary));
     
     /* Typography */
     --font-main: 'Outfit', sans-serif;
     
     /* Layout */
     --container-width: 1200px;
-    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     
-    /* Glassmorphism */
-    --glass-bg: rgba(255, 255, 255, 0.03);
-    --glass-border: rgba(255, 255, 255, 0.08);
-    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    /* Premium Glassmorphism */
+    --glass-bg: rgba(30, 30, 30, 0.4);
+    --glass-border: rgba(255, 255, 255, 0.05);
+    --glass-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.7);
 }
 
 /* ==========================================================================
@@ -38,6 +39,21 @@
 
 html {
     scroll-behavior: initial; /* Lenis handles this */
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(99, 102, 241, 0.4);
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-primary);
 }
 
 body {
@@ -83,6 +99,52 @@ img {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;
+}
+
+/* ==========================================================================
+   Ambient Background & Scroll Progress
+   ========================================================================== */
+.ambient-blob {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(120px);
+    z-index: -1;
+    opacity: 0.35;
+    animation: float 20s infinite ease-in-out alternate;
+    pointer-events: none;
+}
+.blob-1 {
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, var(--accent-primary), transparent 70%);
+    top: -200px;
+    left: -200px;
+}
+.blob-2 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, var(--accent-secondary), transparent 70%);
+    bottom: -150px;
+    right: -150px;
+    animation-delay: -10s;
+}
+@keyframes float {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(100px, 100px) scale(1.1); }
+}
+
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: var(--gradient-glow);
+    background-size: 200% auto;
+    animation: shine 2s linear infinite;
+    z-index: 99999;
+    box-shadow: 0 0 10px var(--accent-primary);
+    transition: width 0.1s;
 }
 
 /* ==========================================================================
@@ -134,7 +196,7 @@ h1, h2, h3, h4, h5, h6 {
 .cursor-outline {
     width: 40px;
     height: 40px;
-    border: 1px solid rgba(0, 217, 255, 0.5);
+    border: 1px solid rgba(99, 102, 241, 0.5);
     border-radius: 50%;
     position: fixed;
     top: 0;
@@ -153,7 +215,7 @@ h1, h2, h3, h4, h5, h6 {
 .cursor-hover .cursor-outline {
     width: 60px;
     height: 60px;
-    background-color: rgba(0, 217, 255, 0.1);
+    background-color: rgba(99, 102, 241, 0.1);
     border-color: var(--accent-primary);
 }
 
@@ -247,9 +309,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .glass-card:hover {
-    border-color: rgba(0, 217, 255, 0.3);
-    transform: translateY(-5px);
-    box-shadow: 0 10px 40px rgba(0, 217, 255, 0.1);
+    border-color: rgba(99, 102, 241, 0.4); /* Indigo accent */
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 15px 40px -5px rgba(99, 102, 241, 0.2);
 }
 
 /* ==========================================================================
@@ -272,6 +334,7 @@ h1, h2, h3, h4, h5, h6 {
     background: var(--gradient-accent);
     color: #fff;
     border: none;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
 }
 
 .btn-primary::before {
@@ -281,10 +344,15 @@ h1, h2, h3, h4, h5, h6 {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, var(--accent-secondary), var(--accent-primary));
+    background: linear-gradient(135deg, var(--accent-secondary), var(--accent-tertiary));
     z-index: -1;
     transition: var(--transition);
     opacity: 0;
+}
+
+.btn-primary:hover {
+    box-shadow: 0 8px 25px rgba(168, 85, 247, 0.6);
+    transform: translateY(-2px);
 }
 
 .btn-primary:hover::before {
@@ -298,8 +366,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-secondary:hover {
-    background: rgba(0, 217, 255, 0.1);
-    box-shadow: 0 0 20px rgba(0, 217, 255, 0.2);
+    background: rgba(99, 102, 241, 0.1);
+    border-color: var(--accent-secondary);
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.2);
+    transform: translateY(-2px);
 }
 
 .btn-icon {
@@ -447,9 +517,17 @@ h1, h2, h3, h4, h5, h6 {
 .name {
     font-size: 5rem;
     margin-bottom: 10px;
-    background: linear-gradient(to right, #fff, #a0a0a0);
+    background: var(--gradient-glow);
+    background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    animation: shine 5s linear infinite;
+}
+
+@keyframes shine {
+    to {
+        background-position: 200% center;
+    }
 }
 
 .title {
@@ -497,7 +575,7 @@ h1, h2, h3, h4, h5, h6 {
     background: var(--accent-primary);
     color: #fff;
     transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 217, 255, 0.3);
+    box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
 }
 
 .scroll-down {
@@ -663,7 +741,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .tag:hover {
-    background: rgba(0, 217, 255, 0.1);
+    background: rgba(99, 102, 241, 0.1);
     border-color: var(--accent-primary);
     color: var(--accent-primary);
 }
@@ -780,7 +858,7 @@ h1, h2, h3, h4, h5, h6 {
 .project-tech span {
     font-size: 0.8rem;
     padding: 4px 10px;
-    background: rgba(0, 217, 255, 0.1);
+    background: rgba(99, 102, 241, 0.1);
     color: var(--accent-primary);
     border-radius: 12px;
 }
@@ -942,7 +1020,7 @@ h1, h2, h3, h4, h5, h6 {
 .info-item i {
     width: 50px;
     height: 50px;
-    background: rgba(0, 217, 255, 0.1);
+    background: rgba(99, 102, 241, 0.1);
     color: var(--accent-primary);
     border-radius: 50%;
     display: flex;
@@ -988,7 +1066,7 @@ input, textarea {
 input:focus, textarea:focus {
     border-color: var(--accent-primary);
     background: rgba(255, 255, 255, 0.05);
-    box-shadow: 0 0 15px rgba(0, 217, 255, 0.1);
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.1);
 }
 
 .form-message {

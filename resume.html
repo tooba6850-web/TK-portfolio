@@ -188,6 +188,134 @@
             flex-wrap: wrap;
         }
 
+        /* Services Grid */
+        .cv-services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+            margin-top: 10px;
+        }
+
+        /* Responsive CV Styles */
+        @media (max-width: 900px) {
+            .cv-document {
+                padding: 40px 30px;
+            }
+            .cv-header-left h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cv-document {
+                padding: 26px 18px;
+                margin: 0 auto 30px auto;
+                border-radius: 10px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            }
+            .cv-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 14px;
+                padding-bottom: 16px;
+                margin-bottom: 20px;
+            }
+            .cv-header-left h1 {
+                font-size: 1.85rem;
+            }
+            .cv-header-left h2 {
+                font-size: 0.95rem;
+                letter-spacing: 1px;
+            }
+            .cv-header-right {
+                text-align: left;
+                font-size: 0.84rem;
+                line-height: 1.8;
+                width: 100%;
+            }
+            .cv-body {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .cv-left {
+                border-right: none;
+                border-bottom: 2px solid #e2e8f0;
+                padding-right: 0;
+                padding-bottom: 24px;
+            }
+            .cv-entry-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 2px;
+            }
+            .cv-entry-date {
+                white-space: normal;
+                margin-bottom: 2px;
+            }
+            .cv-services-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            .cv-section-title {
+                font-size: 0.8rem;
+                letter-spacing: 1.5px;
+                padding: 5px 10px;
+                margin: 22px 0 14px 0;
+            }
+            .cv-skill-bar-row span:first-child {
+                min-width: 80px;
+                font-size: 0.82rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cv-document {
+                padding: 18px 12px;
+                border-radius: 8px;
+            }
+            .cv-header-left h1 {
+                font-size: 1.55rem;
+            }
+            .cv-header-left h2 {
+                font-size: 0.88rem;
+            }
+            .cv-header-right {
+                font-size: 0.8rem;
+                line-height: 1.7;
+            }
+            .cv-summary {
+                font-size: 0.83rem;
+                line-height: 1.55;
+            }
+            .cv-entry-title {
+                font-size: 0.9rem;
+            }
+            .cv-entry-sub {
+                font-size: 0.82rem;
+            }
+            .cv-entry li {
+                font-size: 0.82rem;
+            }
+            .cv-project h4 {
+                font-size: 0.9rem;
+            }
+            .cv-project p {
+                font-size: 0.82rem;
+                line-height: 1.5;
+            }
+            .resume-actions {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 10px;
+            }
+            .resume-actions .btn {
+                width: 100%;
+                text-align: center;
+                justify-content: center;
+                padding: 12px 20px;
+            }
+        }
+
         /* Print styles */
         @media print {
             nav, footer, .resume-actions, .cursor-dot, .cursor-outline { display: none !important; }
@@ -463,7 +591,7 @@
                 <!-- ─── PAGE 4 BOTTOM: SERVICES & ADDITIONAL INFO ─── -->
                 <hr class="cv-divider" style="margin-top: 30px;">
                 <div class="cv-section-title">Services Offered</div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 10px;">
+                <div class="cv-services-grid">
                     <div>
                         <strong style="color:#0056b3; font-size:0.9rem;"><i class="fa-solid fa-globe" style="margin-right:5px;"></i>Responsive Website Development</strong>
                         <p style="font-size:0.84rem; color:#444; margin: 4px 0 0 0;">Creating highly responsive portfolio, business, and landing pages for any device.</p>
@@ -541,7 +669,7 @@
                 margin:       [10, 10, 10, 10],
                 filename:     'Tooba_Khan_CV.pdf',
                 image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 2, useCORS: true, letterRendering: true },
+                html2canvas:  { scale: 2, useCORS: true, letterRendering: true, windowWidth: 1024 },
                 jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
                 pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
             };

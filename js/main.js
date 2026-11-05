@@ -95,15 +95,27 @@ document.addEventListener('DOMContentLoaded', () => {
         scrollProgress.style.width = scrolled + "%";
     });
 
-    hamburger.addEventListener('click', () => {
+    hamburger.addEventListener('click', (e) => {
+        e.stopPropagation();
         hamburger.classList.toggle('active');
         navLinks.classList.toggle('active');
+        document.body.classList.toggle('menu-open', navLinks.classList.contains('active'));
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (navLinks.classList.contains('active') && !navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+            document.body.classList.remove('menu-open');
+        }
     });
 
     navItems.forEach(item => {
         item.addEventListener('click', () => {
             hamburger.classList.remove('active');
             navLinks.classList.remove('active');
+            document.body.classList.remove('menu-open');
         });
     });
 
